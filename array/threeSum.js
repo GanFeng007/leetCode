@@ -7,6 +7,11 @@
 //   [-1, 0, 1],
 //   [-1, -1, 2]
 // ]
+// 解题思路
+// 1、将所有可能的三元组合放入数组中形成一个临时的二维数组
+// 2、在临时的二维数组中进行条件判断满足a+b+c=0并且在threeSum中不存在重复的，则插入threeSum
+// 3、最后判断3个0的情况，返回threeSum
+// threeSum相关的代码都存在运行超时的情况，待优化
 /**
  * @param {number[]} nums
  * @return {number[][]}
@@ -16,6 +21,7 @@ var threeSum = function (nums) {
   if (len < 3) return []
   var result = []
   var zero = 0
+  // 三重for循环生成临时二维数组
   for (var one = 0; one < len; one++) {
     for (var two = one + 1; two < len; two++) {
       for (var three = two + 1; three < len; three++) {
@@ -30,12 +36,15 @@ var threeSum = function (nums) {
   var threeSums = []
   for (var index = 0; index < result.length; index++) {
     var item = result[index]
+    // 进行满足条件判断是否满足a+b+c=0
     if (item[0] + item[1] + item[2] === 0) {
+      // 3个都为0进行记录
       if (item[0] === item[1] && item[1] === item[2]) {
         zero++
         continue
       }
       var flag = true
+      // 查重判断
       for (var subIndex = 0; subIndex < threeSums.length; subIndex++) {
         if (threeSums[subIndex].includes(item[0]) &&
           threeSums[subIndex].includes(item[1]) &&
@@ -44,14 +53,19 @@ var threeSum = function (nums) {
           break
         }
       }
+      // 不存在重复值则插入
       if (flag) {
         threeSums.push(item)
       }
     }
   }
+  // 0值结果判断
   if (zero) {
     threeSums.push([0, 0, 0])
   }
   return threeSums;
 };
-console.log(JSON.stringify(threeSum([-11,-3,-6,12,-15,-13,-7,-3,13,-2,-10,3,12,-12,6,-6,12,9,-2,-12,14,11,-4,11,-8,8,0,-12,4,-5,10,8,7,11,-3,7,5,-3,-11,3,11,-13,14,8,12,5,-12,10,-8,-7,5,-9,-11,-14,9,-12,1,-6,-8,-10,4,9,6,-3,-3,-12,11,9,1,8,-10,-3,2,-11,-10,-1,1,-15,-6,8,-7,6,6,-10,7,0,-7,-7,9,-8,-9,-9,-14,12,-5,-10,-15,-9,-15,-7,6,-10,5,-7,-14,3,8,2,3,9,-12,4,1,9,1,-15,-13,9,-14,11,9])))
+console.time('开始')
+console.log(threeSum([3,-3,-1,-6,6,-1,-10,-2,-8,-4,6,2,0,9,-3,-7,9,-10,-4,5,2,-10,-2,-9]))
+console.log(threeSum([3,-3,-1,-6,6,-1,-10,-2,-8,-4,6,2,0,9,-3,-7,9,-10,-4,5,2,-10,-2,-9]).length)
+console.timeEnd('开始')
