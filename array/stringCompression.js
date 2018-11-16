@@ -63,7 +63,7 @@ var compress = function (chars) {
     }else {
       index++
     }
-  }
+  } 
   return chars.length
 };
 console.log(compress(["p","p","p","p","m","m","b","b","b","b","b","u","u","r","r","u","n","n","n","n","n","n","n","n","n","n","n","u","u","u","u","a","a","u","u","r","r","r","s","s","a","a","y","y","y","g","g","g","g","g"]))

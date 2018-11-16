@@ -54,6 +54,7 @@ var threeSum = function (nums) {
     }
     return result
 }
+// 未通过
 console.time('开始3')
 console.log(threeSum([3,-3,-1,-6,6,-1,-10,-2,-8,-4,6,2,0,9,-3,-7,9,-10,-4,5,2,-10,-2,-9]))
 console.log(threeSum([3,-3,-1,-6,6,-1,-10,-2,-8,-4,6,2,0,9,-3,-7,9,-10,-4,5,2,-10,-2,-9]).length)
