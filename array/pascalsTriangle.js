@@ -37,4 +37,5 @@ var generate = function (numRows) {
   }
   return result
 };
+// 验证通过
 console.log(generate(6))
