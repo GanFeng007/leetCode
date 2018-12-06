@@ -19,25 +19,36 @@ const util = require('./makeListNode')
  * @param {ListNode} head
  * @return {ListNode}
  */
-var deleteDuplicates = function (head) {
-  var p1 = head
-  while(p1.next){
-    var current = p1.val
-    var p2 = p1
-    debugger
-    while(p2.next){
-      if(current === p2.next.val){
-        p2 = p2.next.next
-      }else{
-        p2 = p2.next
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+// 解法一：排重插入，注意关键词排序链表
+// var deleteDuplicates = function (head) {
+//   if (!head) return head
+//   var result = new ListNode(head.val)
+//   var curr = result
+//   while (head.next != null) {
+//     if (curr.val != head.next.val) {
+//       curr.next = new ListNode(head.next.val)
+//       curr = curr.next
+//     }
+//     head = head.next
+//   }
+//   return result
+// }
+// 解法二：直接删除重复节点，注意关键词排序链表
+var deleteDuplicates = function(head) {
+  var current = head
+  while(current!=null&&current.next!=null){
+      if(current.val ==current.next.val){
+          current.next = current.next.next
+      }else {
+          current = current.next
       }
-    }
-    p1 = p1.next
   }
-  console.log(JSON.stringify(p1))
-  console.log(JSON.stringify(head))
   return head
-};
-// 未验证通过
-console.log(JSON.stringify(util.makeListNode([1,1,2,3,3,4])))
-console.log(deleteDuplicates(util.makeListNode([1,1,2,3,3,4])))
+}
+// 验证通过
+console.log(JSON.stringify(util.makeListNode([1, 1, 2, 3, 3, 4])))
+console.log(deleteDuplicates(util.makeListNode([1, 1, 2, 3, 3, 4])))
