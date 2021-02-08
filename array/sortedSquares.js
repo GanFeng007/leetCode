@@ -27,14 +27,13 @@
  * @return {number[]}
  */
 var sortedSquares = function (nums) {
-  insertSort(nums)
-  return nums.map(item => item * item);
+  return insertSort(nums).map(item => item * item);
   function insertSort(nums) {
     var positive = nums[0];
     if (positive < 0) {
       positive = -positive;
       var flag = false;
-      for (var i = 0; i < nums.length; i++) {
+      for (var i = 1; i < nums.length; i++) {
         if (positive <= nums[i]) {
           nums.splice(i, 0, positive);
           nums.shift();
@@ -46,7 +45,7 @@ var sortedSquares = function (nums) {
         nums.shift()
         nums.push(positive);
       }
-      insertSort(nums);
+      return insertSort(nums);
     } else {
       return nums;
     }
