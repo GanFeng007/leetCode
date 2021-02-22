@@ -35,19 +35,19 @@
  * @param {number[][]} matrix
  * @return {boolean}
  */
-var isToeplitzMatrix = function(matrix) {
-    var flag = true
-    for(var i = 0, len = matrix.length; i < len; i ++){
-      for(var j = 0,jLen = matrix[0].length; j < jLen; j++){
-        if(matrix[i+1]&&matrix[i+1][j+1]!==undefined&&matrix[i][j] !== matrix[i+1][j+1]){
-          flag = false
-        }
+ var isToeplitzMatrix = function(matrix) {
+  var flag = true;
+  for(var i = matrix.length-1; i > 0; i--){
+      for(var j = matrix[0].length-1;j> 0; j--){
+          if(matrix[i][j] != matrix[i-1][j-1]){
+              flag = false;
+          }
       }
       if(!flag){
-        break
+          break;
       }
-    }
-    return flag
+  }
+  return flag
 };
 // 验证通过
 console.log(isToeplitzMatrix([[11,74,0,93],[40,11,74,7]]))
